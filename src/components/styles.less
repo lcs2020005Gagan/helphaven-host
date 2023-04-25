@@ -1,0 +1,200 @@
+// Rating Variables
+@rating-size: 200px;
+@rating-color:#edfa05 ;
+@rating-color-inactive: darken(@rating-color, 35%);
+@rating-circle-contrast: darken(@rating-color, 20%);
+@rating-corner-radius: 5px;
+
+// Rating
+.rating-star {
+    height: @rating-size;
+    position: relative;
+    width: @rating-size;
+    .rating-corners-one {
+        background: @rating-color-inactive;
+        border-radius: @rating-corner-radius;
+        height: @rating-size;
+        position: absolute;
+        transform:rotate(22.5deg);
+        width: @rating-size;        
+    }
+    .rating-corners-two {
+        background: @rating-color-inactive;
+        border-radius: @rating-corner-radius;
+        height: @rating-size;
+        left: 0;
+        position: absolute;
+        top: 0;
+        transform:rotate(-22.5deg);
+        width: @rating-size;
+    }
+    .rating {
+        @rating-circle-caliber: (@rating-size - 10);
+        background: @rating-circle-contrast;
+        border-radius:@rating-circle-caliber;
+        border: 6px solid @rating-color;
+        color: #ffffff;
+        font-size: (@rating-circle-caliber / 2.5);
+        font-weight: bold;
+        height: @rating-circle-caliber;
+        left: 50%;
+        line-height: (@rating-circle-caliber - 5);
+        position: absolute;
+        text-align: center;
+        top: 50%;
+        transform:translate(-50%,-50%);
+        width: @rating-circle-caliber;
+        z-index: 1;     
+    }
+    &.zero  { .rating:before { content: "0.0"; } &.half { .rating:before { content:"0.5" } } }
+    &.one   { .rating:before { content: "1.0"; } &.half { .rating:before { content:"1.5" } } }
+    &.two   { .rating:before { content: "2.0"; } &.half { .rating:before { content:"2.5" } } }
+    &.three { .rating:before { content: "3.0"; } &.half { .rating:before { content:"3.5" } } }
+    &.four  { .rating:before { content: "4.0"; } &.half { .rating:before { content:"4.5" } } }
+    &.five  { .rating:before { content: "5.0"; } &.half { .rating:before { content:"5.5" } } }
+    &.six   { .rating:before { content: "6.0"; } &.half { .rating:before { content:"6.5" } } }
+    &.seven { .rating:before { content: "7.0"; } &.half { .rating:before { content:"7.5" } } }
+    &.eight { .rating:before { content: "8.0"; } }
+    .corner {
+        @rating-corner-size: (@rating-size / 2);
+        border-radius: @rating-corner-radius;
+        position: absolute;
+        height: @rating-corner-size;
+        width: @rating-corner-size;
+        overflow: hidden;
+        @rating-corner-radical: (sqrt((@rating-corner-size * @rating-corner-size) + (@rating-corner-size * @rating-corner-size)) / 2);
+        &:before {
+            content: "";
+            height: @rating-corner-size;
+            position: absolute;
+            transform:rotate(-45deg);
+            width: @rating-corner-size;
+        }
+        &.one {
+            top: 0;
+            right: 0;
+            &:before {
+                right: 0;
+                top: -(unit(@rating-corner-radical, px));
+            }
+        }
+        &.two {
+            top: 0;
+            right: 0;
+            &:before {
+                right: 0;
+                top: -(unit(@rating-corner-radical, px));
+            }
+        }
+        &.three {
+            bottom: 0;
+            right: 0;
+            &:before {
+                right: -(unit(@rating-corner-radical, px));
+                top: 0;
+            }
+        }
+        &.four {
+            bottom: 0;
+            right: 0;
+            &:before {
+                right: -(unit(@rating-corner-radical, px));
+                top: 0;
+            }
+        }
+        &.five {
+            bottom: 0;
+            left: 0;
+            &:before {
+                right: 0;
+                top: unit(@rating-corner-radical, px);
+            }
+        }
+        &.six {
+            bottom: 0;
+            left: 0;
+            &:before {
+                right: 0;
+                top: unit(@rating-corner-radical, px);
+            }
+        }
+        &.seven {
+            top: 0;
+            left: 0;
+            &:before {
+                right: unit(@rating-corner-radical, px);
+                top: 0;
+            }
+        }
+        &.eight {
+            top: 0;
+            left: 0;
+            &:before {
+                right: unit(@rating-corner-radical, px);
+                top: 0;
+            }
+        }
+    }
+    &.zero {
+        &.half { .rating-corners-two { .corner.one:before { background: @rating-color } } }
+    }
+    &.one {
+        .rating-corners-two { .corner.one { background: @rating-color } }
+        &.half { .rating-corners-one { .corner.two:before { background: @rating-color } } }
+    }
+    &.two {
+        .rating-corners-two { .corner.one { background: @rating-color } }
+        .rating-corners-one { .corner.two { background: @rating-color } }
+        &.half { .rating-corners-two { .corner.three:before { background: @rating-color } } }
+    }
+    &.three {
+        .rating-corners-two {   .corner.one { background: @rating-color } }
+        .rating-corners-one {   .corner.two { background: @rating-color } }
+        .rating-corners-two {   .corner.three { background: @rating-color } }
+        &.half { .rating-corners-one { .corner.four:before { background: @rating-color } } }
+    }
+    &.four {
+        .rating-corners-two {   .corner.one { background: @rating-color } }
+        .rating-corners-one {   .corner.two { background: @rating-color } }
+        .rating-corners-two {   .corner.three { background: @rating-color } }
+        .rating-corners-one {   .corner.four { background: @rating-color } }
+        &.half { .rating-corners-two { .corner.five:before { background: @rating-color } } }
+    }
+    &.five {
+        .rating-corners-two {   .corner.one { background: @rating-color } }
+        .rating-corners-one {   .corner.two { background: @rating-color } }
+        .rating-corners-two {   .corner.three { background: @rating-color } }
+        .rating-corners-one {   .corner.four { background: @rating-color } }
+        .rating-corners-two {   .corner.five { background: @rating-color } }
+        &.half { .rating-corners-one { .corner.six:before { background: @rating-color } } }
+    }
+    &.six {
+        .rating-corners-two {   .corner.one { background: @rating-color } }
+        .rating-corners-one {   .corner.two { background: @rating-color } }
+        .rating-corners-two {   .corner.three { background: @rating-color } }
+        .rating-corners-one {   .corner.four { background: @rating-color } }
+        .rating-corners-two {   .corner.five { background: @rating-color } }
+        .rating-corners-one {   .corner.six { background: @rating-color } }
+        &.half { .rating-corners-two { .corner.seven:before { background: @rating-color } } }
+    }
+    &.seven {
+        .rating-corners-two {   .corner.one { background: @rating-color } }
+        .rating-corners-one {   .corner.two { background: @rating-color } }
+        .rating-corners-two {   .corner.three { background: @rating-color } }
+        .rating-corners-one {   .corner.four { background: @rating-color } }
+        .rating-corners-two {   .corner.five { background: @rating-color } }
+        .rating-corners-one {   .corner.six { background: @rating-color } }
+        .rating-corners-two {   .corner.seven { background: @rating-color } }
+        &.half { .rating-corners-one { .corner.eight:before { background: @rating-color } } }
+    }
+    &.eight {
+        .rating-corners-two {   .corner.one { background: @rating-color } }
+        .rating-corners-one {   .corner.two { background: @rating-color } }
+        .rating-corners-two {   .corner.three { background: @rating-color } }
+        .rating-corners-one {   .corner.four { background: @rating-color } }
+        .rating-corners-two {   .corner.five { background: @rating-color } }
+        .rating-corners-one {   .corner.six { background: @rating-color } }
+        .rating-corners-two {   .corner.seven { background: @rating-color } }
+        .rating-corners-one {   .corner.eight { background: @rating-color } }
+    }
+}
