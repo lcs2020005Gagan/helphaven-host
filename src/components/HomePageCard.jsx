@@ -9,7 +9,6 @@ import Tooltip from '@mui/material/Tooltip';
 import { CircularProgressbar,buildStyles } from 'react-circular-progressbar';
 import "react-circular-progressbar/dist/styles.css";
 import VisibilitySensor from "react-visibility-sensor";
-import 'react-circular-progressbar/dist/styles.css';
 import { Link, useNavigate } from 'react-router-dom';
 import Chip from './Chip'
 import Chip2 from './Chip2';
